@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Networking Assistant</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background:#f4f4f4;
+            padding:30px;
+        }
+
+        .container{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            width:70%;
+            margin:auto;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+        }
+
+        button{
+            padding:10px 20px;
+            background:#007BFF;
+            color:white;
+            border:none;
+            cursor:pointer;
+        }
+
+        h2{
+            color:#007BFF;
+        }
+
+        ul{
+            line-height:1.8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🤝 Personalized Networking Assistant</h1>
+
+<form method="POST">
+
+<label>Event Name</label>
+<input type="text" name="event" required>
+
+<label>Your Interest</label>
+<input type="text" name="interest" required>
+
+<label>Your Skills</label>
+<input type="text" name="skills" required>
+
+<button type="submit">Generate Suggestions</button>
+
+</form>
+
+<hr>
+
+{% if event_info %}
+
+<h2>📌 Event Analysis</h2>
+
+<p>{{event_info}}</p>
+
+<h2>💬 Networking Topics</h2>
+
+<ul>
+{% for topic in topics %}
+    <li>{{ topic }}</li>
+{% endfor %}
+</ul>
+
+</ul>
+<h2>🎯 Conversation Tips</h2>
+
+<ul>
+{% for tip in tips %}
+    <li>{{ tip }}</li>
+{% endfor %}
+</ul>
+
+<h2>👥 Matching Users</h2>
+
+{% if matches %}
+
+<ul>
+
+{% for user in matches %}
+
+<li>
+
+<b>{{user[0]}}</b><br>
+
+Email : {{user[1]}}<br>
+
+Skills : {{user[2]}}
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No matching users found.</p>
+
+{% endif %}
+
+<h2>✅ Fact Check</h2>
+
+<p style="white-space: pre-wrap;">{{ fact }}</p>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
